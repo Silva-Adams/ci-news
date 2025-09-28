@@ -26,6 +26,7 @@ namespace App\Config;
  *
  * @package CodeIgniter-Ion-Auth
  */
+debug_backtrace();
 class IonAuth extends \CodeIgniter\Config\BaseConfig
 {
 
