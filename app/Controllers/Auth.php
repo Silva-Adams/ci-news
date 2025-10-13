@@ -929,7 +929,9 @@ class Auth extends BaseController
 		}
 		else
 		{
+			// Output the HTML and return an empty string to satisfy the return type
 			echo $viewHtml;
+			return '';
 		}
 	}
 }

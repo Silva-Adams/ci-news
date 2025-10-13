@@ -1,5 +1,5 @@
 <?php
-namespace IonAuth\Database\Seeds;
+namespace App\Database\Seeds;
 
 /**
  * @package CodeIgniter-Ion-Auth
