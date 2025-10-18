@@ -1,5 +1,20 @@
 <IfModule authz_core_module>
-	Require all denied
+	RewriteEngine On
+	RewriteBase / 
+	
+	# Redirect Trailing Slashes if not a folder...
+	RewriteCond %
+	{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_URI} (.+)/$
+		RewriteRule ^ %1 [L,R=301]
+
+
+		RewriteCond %
+	{REQUEST_FILENAME} !-f
+		RewriteCond %
+	{REQUEST_FILENAME} !-d
+		RewriteRule ^(.*)$ <index class="php">
+	[L]	
 </IfModule>
 <IfModule !authz_core_module>
 	Deny from all

@@ -5,9 +5,10 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/auth/login', 'Auth::index'); 
+$routes->get('/', 'Auth::index');
+$routes->add('auth/index', 'Auth::index');
 $routes->group('auth', ['namespace' => 'IonAuth\Controllers'], function ($routes) {
-	$routes->add('login', 'Auth::login');
+	$routes->add('auth/login', 'Auth::login');
 	$routes->get('logout', 'Auth::logout');
 	$routes->add('forgot_password', 'Auth::forgot_password');
 	$routes->get('/', 'Auth::index');
