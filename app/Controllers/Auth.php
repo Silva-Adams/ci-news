@@ -71,7 +71,7 @@ class Auth extends BaseController
 	 */
 	public function __construct()
 	{
-		$this->ionAuth    = new \IonAuth\Libraries\IonAuth();
+		$this->ionAuth    = new \App\Libraries\IonAuth();
 		$this->validation = \Config\Services::validation();
 		helper(['form', 'url']);
 		$this->configIonAuth = config('IonAuth');

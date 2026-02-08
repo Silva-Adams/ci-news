@@ -5,12 +5,14 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Auth::index');
-$routes->add('auth/index', 'Auth::index');
-$routes->group('auth', ['namespace' => 'IonAuth\Controllers'], function ($routes) {
-	$routes->add('auth/login', 'Auth::login');
+// Public routes (no auth required)
+$routes->add('auth/login', 'Auth::login');
+$routes->add('auth/forgot_password', 'Auth::forgot_password');
+
+// Protected routes (auth required)
+$routes->get('/', 'Auth::index', ['filter' => 'auth']);
+$routes->group('auth', ['filter' => 'auth'], function ($routes) {
 	$routes->get('logout', 'Auth::logout');
-	$routes->add('forgot_password', 'Auth::forgot_password');
 	$routes->get('/', 'Auth::index');
 	// $routes->add('create_user', 'Auth::create_user');
 	// $routes->add('edit_user/(:num)', 'Auth::edit_user/$1');

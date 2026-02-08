@@ -1,5 +1,5 @@
 <?php
-namespace IonAuth\Libraries;
+namespace App\Libraries;
 
 /**
  * Name:    Ion Auth
@@ -48,6 +48,13 @@ class IonAuth
 	protected $email;
 
 	/**
+	 * Session instance
+	 *
+	 * @var \CodeIgniter\Session\Session
+	 */
+	protected $session;
+
+	/**
 	 * __construct
 	 *
 	 * @author Ben
@@ -64,7 +71,7 @@ class IonAuth
 
 		$this->session = session();
 
-		$this->ionAuthModel = new \IonAuth\Models\IonAuthModel();
+		$this->ionAuthModel = new \App\Models\IonAuthModel();
 
 		$emailConfig = $this->config->emailConfig;
 

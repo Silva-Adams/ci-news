@@ -1,5 +1,5 @@
 <?php
-namespace App\Config;
+namespace Config;
 
 /**
  * Name:    Ion Auth
