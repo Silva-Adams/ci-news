@@ -22,5 +22,7 @@ $routes->group('auth', ['filter' => 'auth'], function ($routes) {
 	$routes->add('deactivate/(:num)', 'Auth::deactivate/$1');
 	$routes->get('reset_password/(:hash)', 'Auth::reset_password/$1');
 	$routes->post('reset_password/(:hash)', 'Auth::reset_password/$1');
+	$routes->add('welcome', 'Auth::welcome_message');
+	$routes->get('welcome', 'Auth::welcome_message');
 	// ...
 });

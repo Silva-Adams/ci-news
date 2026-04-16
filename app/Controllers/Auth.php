@@ -98,8 +98,8 @@ class Auth extends BaseController
 		else if (! $this->ionAuth->isAdmin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			//show_error('You must be an administrator to view this page.');
-			throw new \Exception('You must be an administrator to view this page.');
+			//show_error('You must be anstrator to view this page.');
+			return view('auth/welcome_message'); 
 		}
 		else
 		{
