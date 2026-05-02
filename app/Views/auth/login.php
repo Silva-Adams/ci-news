@@ -1,21 +1,24 @@
 
+<?php
 
+use Config\IonAuth; 
+?>
 
 <h1><?php echo lang('Auth.login_heading');?></h1>
 <p><?php echo lang('Auth.login_subheading');?></p>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<div id="infoMessage"><?php echo $message ?? '';?></div>
 
 <?php echo form_open('auth/login');?>
 
   <p>
     <?php echo form_label(lang('Auth.login_identity_label'), 'identity');?>
-    <?php echo form_input($identity);?>
+    <?php echo form_input($identity ?? []);?>
   </p>
 
   <p>
     <?php echo form_label(lang('Auth.login_password_label'), 'password');?>
-    <?php echo form_input($password);?>
+    <?php echo form_input($password ?? "");?>
   </p>
 
   <p>
