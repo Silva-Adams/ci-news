@@ -52,3 +52,19 @@
     input[type="submit"]:hover {
       background-color: #2980b9;
     }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      color: #2980b9;
+      text-decoration: underline;
+      outline: none;
+    }
+
+    a:visited {
+      color: #5dade2;
+    }
