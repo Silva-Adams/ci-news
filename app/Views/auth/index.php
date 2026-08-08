@@ -28,4 +28,4 @@
 	<?php endforeach;?>
 </table>
 
-<p><?php echo anchor('auth/create_user', lang('Auth.index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('Auth.index_create_group_link'))?></p>
+<p><?php echo anchor('auth/change_password', 'Change Password')?> | <?php echo anchor('auth/create_user', lang('Auth.index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('Auth.index_create_group_link'))?></p>

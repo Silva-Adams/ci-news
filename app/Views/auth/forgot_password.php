@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="<?php echo base_url('styles/style.css'); ?>">
-      <title>Document</title>
+      <title>Forgot Password</title>
 </head>
 <body>
       <h1><?php echo lang('Auth.forgot_password_heading');?></h1>
@@ -22,6 +22,6 @@
       <p><?php echo form_submit('submit', lang('Auth.forgot_password_submit_btn'));?></p>
 
       <?php echo form_close();?>
-      
+
 </body>
 </html>

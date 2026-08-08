@@ -1,3 +1,4 @@
+
 <h1><?php echo lang('Auth.create_user_heading');?></h1>
 <p><?php echo lang('Auth.create_user_subheading');?></p>
 
