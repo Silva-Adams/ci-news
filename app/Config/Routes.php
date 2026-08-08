@@ -1,6 +1,7 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
+use App\Controllers\Pages;
 
 /**
  * @var RouteCollection $routes
@@ -26,5 +27,7 @@ $routes->group('auth', ['filter' => 'auth'], function ($routes) {
 	$routes->post('reset_password/(:hash)', 'Auth::reset_password/$1');
 	$routes->add('welcome', 'Auth::welcome_message');
 	$routes->get('welcome', 'Auth::welcome_message');
+	$routes->get('pages', [Pages::class, 'index']);
+	$routes->get('(:segment)', [Pages::class, 'view']);
 	// ...
 });
