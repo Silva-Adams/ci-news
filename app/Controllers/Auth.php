@@ -62,7 +62,7 @@ class Auth extends BaseController
 	 *
 	 * @var string
 	 */
-	protected $viewsFolder = 'App\Views\auth';
+	protected $viewsFolder = 'auth';
 
 	/**
 	 * Constructor
@@ -93,13 +93,13 @@ class Auth extends BaseController
 		if (! $this->ionAuth->loggedIn())
 		{
 			// redirect them to the login page
-			return redirect()->to('/auth/login');
+			return view('auth/login');
 		}
 		else if (! $this->ionAuth->isAdmin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
 			//show_error('You must be anstrator to view this page.');
-			return view('auth/welcome_message'); 
+			return view('auth/welcome_message');
 		}
 		else
 		{
@@ -203,7 +203,7 @@ class Auth extends BaseController
 		{
 			return redirect()->to('/auth/login');
 		}
-		
+
 		$this->validation->setRule('old', lang('Auth.change_password_validation_old_password_label'), 'required');
 		$this->validation->setRule('new', lang('Auth.change_password_validation_new_password_label'), 'required|min_length[' . $this->configIonAuth->minPasswordLength . ']|matches[new_confirm]');
 		$this->validation->setRule('new_confirm', lang('Auth.change_password_validation_new_password_confirm_label'), 'required');

@@ -27,6 +27,11 @@ class AuthFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $ionAuth = new \App\Libraries\IonAuth();
+        $uri = service('uri')->getPath();
+
+        if (in_array($uri, ['auth/login', 'auth/forgot_password'], true)) {
+            return;
+        }
 
         if (!$ionAuth->loggedIn()) {
             return redirect()->to('/auth/login');
