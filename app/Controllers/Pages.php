@@ -10,7 +10,7 @@ class Pages extends BaseController
         return view('auth/welcome_message');
     }
 
-    public function view(string $page = 'home')
+    public function view(string $page = 'news')
     {
         if (! is_file(APPPATH . 'Views/auth/pages/' . $page . '.php')) {
             // Whoops, we don't have a page for that!

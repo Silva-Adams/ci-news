@@ -2,6 +2,7 @@
 
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Pages;
+use App\Controllers\News;
 
 /**
  * @var RouteCollection $routes
@@ -24,6 +25,10 @@ $routes->group('auth', ['filter' => 'auth'], function ($routes) {
 	$routes->match(['get', 'post'], 'deactivate/(:num)', 'Auth::deactivate/$1');
 	$routes->match(['get', 'post'], 'reset_password/(:hash)', 'Auth::reset_password/$1');
 	$routes->match(['get', 'post'], 'welcome', 'Auth::welcome_message');
-	$routes->get('pages', [Pages::class, 'index']);
-	$routes->get('(:segment)', [Pages::class, 'view']);
+	$routes->get('pages/(:segment)', [Pages::class, 'view']);
+	$routes->match(['get', 'post'], 'news/(:segment)', [Pages::class, 'view']);
+	$routes->get('news', [News::class, 'index']);
+	$routes->get('pages/(:segment)', [Pages::class, 'view']);
+	$routes->get('news/(:segment)', 'News::show/$1');
+
 });
