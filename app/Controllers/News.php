@@ -17,7 +17,7 @@ class News extends BaseController
         ];
 
         return view('templates/header', $data)
-            . view('news/index')
+            . view('auth/pages/news')
             . view('templates/footer');
 
     }
