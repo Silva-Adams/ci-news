@@ -1,3 +1,5 @@
+
+
 <h2><?= esc($title) ?></h2>
 
 <?php if ($news_list !== []): ?>
