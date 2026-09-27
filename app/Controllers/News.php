@@ -3,39 +3,53 @@
 namespace App\Controllers;
 
 use App\Models\NewsModel;
-use CodeIgniter\Exceptions\PageNotFoundException;
+use App\Libraries\NewsApiService;
 
 class News extends BaseController
 {
-    public function index()
+    protected NewsModel $newsModel;
+
+    public function __construct()
     {
-        $model = model(NewsModel::class);
-
-        $data = [
-            'news_list' => $model->getNews(),
-            'title'     => 'News archive',
-        ];
-
-        return view('templates/header', $data)
-            . view('auth/pages/news')
-            . view('templates/footer');
-
+        $this->newsModel = new NewsModel();
     }
 
-    public function show(?string $slug = null)
+    /**
+     * GET /news
+     * Lists stored articles, newest first, paginated.
+     */
+    public function index()
     {
-        $model = model(NewsModel::class);
+        $data = [
+            'articles' => $this->newsModel->getLatest(20),
+            'pager'    => $this->newsModel->pager,
+        ];
 
-        $data['news'] = $model->getNews($slug);
+        return view('auth/news/index', $data);
+    }
 
-        if ($data['news'] === null) {
-            throw new PageNotFoundException('Cannot find the news item: ' . $slug);
+    /**
+     * POST /news/refresh
+     * Lets a logged-in admin (or anyone, if you don't gate it) trigger an
+     * on-demand fetch from the browser instead of waiting for the cron job.
+     */
+    public function refresh()
+    {
+        $service = new NewsApiService();
+
+        $country  = $this->request->getPost('country') ?? 'us';
+        $category = $this->request->getPost('category');
+
+        try {
+            $articles = $service->fetchTopHeadlines($country, $category);
+            $inserted = $this->newsModel->upsertArticles($articles);
+        } catch (\Throwable $e) {
+            return redirect()->to('auth/news')->with('error', $e->getMessage());
         }
 
-        $data['title'] = $data['news']['title'];
-
-        return view('templates/header', $data)
-            . view('auth/news/view')
-            . view('templates/footer');
+        return redirect()->to('auth/news')->with(
+            'message',
+            "Fetched " . count($articles) . " articles, added {$inserted} new."
+        );
     }
 }

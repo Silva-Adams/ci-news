@@ -5,4 +5,4 @@
 </head>
 <body>
 
-    <h1><?= esc($title) ?></h1>
+    <h1 class="display-1"> <?= esc($title) ?> </h1>
